@@ -1,0 +1,113 @@
+<html>
+<head>
+<style>
+#mycircle
+{
+	position : relative;
+	width : 25px;
+	height : 25px;
+	
+	border-radius : 25px;
+	background:black;
+	
+}
+#position{
+height :20px;
+width:1200px;
+text-align:center;
+}
+</style>
+<script>
+	
+	timeout=15;
+	s=1;
+	change=1;
+	function get_value()
+	{
+	 length=prompt("please enter the length of the rectangle","400");
+	length=Number(length);
+	breadth=prompt("please enter the breadth of the rectangle","200");
+	breadth=Number(breadth);
+	}
+	
+	function increase_speed()
+	{
+		timeout-=2;
+	}
+
+	function decrease_speed()
+	{
+		timeout+=2;
+	}
+	
+	function start()
+	{
+
+		if(s==1)	
+			right();
+		else if(s==2)
+			down();
+		else if(s==3)
+			left();
+		else
+			up();
+
+	}
+
+
+	function right()
+	{
+		
+		x=document.getElementById("mycircle");
+		x.style.left = parseInt(x.style.left)+change+'px';
+		if(parseInt(x.style.left)<400+length)
+			setTimeout(right,timeout);
+		else
+			setTimeout(down,timeout);
+	}
+	function down()
+	{
+		
+		x=document.getElementById("mycircle");
+		x.style.top = parseInt(x.style.top)+change+'px';
+		if(parseInt(x.style.top)<150+breadth)
+			setTimeout(down,timeout);
+		else
+			setTimeout(left,timeout);
+	}
+	function left()
+	{
+		
+		x=document.getElementById("mycircle");
+		x.style.left = parseInt(x.style.left)-change+'px';
+		if(parseInt(x.style.left)>400)
+			setTimeout(left,timeout);
+		else
+			setTimeout(up,timeout);
+	}
+	function up()
+	{
+		
+		x=document.getElementById("mycircle");
+		x.style.top = parseInt(x.style.top)-change+'px';
+		if(parseInt(x.style.top)>150)
+			setTimeout(up,timeout);
+		else
+			setTimeout(right,timeout);
+	}
+</script>
+</head>
+<body onload="get_value()">
+<div id="position">
+<h2><p >Circle moving in a rectangular path <br>click on the circle :)</p></h2><hr>
+<button  onclick="increase_speed()">Increase speed</button>
+		<button onclick="decrease_speed()">Decrease speed</button><br>
+	</div>
+	
+
+		<div id="mycircle" onclick="start()" style="left: 400px; top: 150px;"></div>
+
+
+</body>
+
+</html>

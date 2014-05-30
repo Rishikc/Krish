@@ -1,0 +1,59 @@
+<html>
+<head>
+<script LANGUAGE="JavaScript">
+    i=0;
+	timeout=15;
+	radius=100;
+	
+	function move_circle()
+	{
+			x=document.getElementById("mycircle");
+			angle=Math.PI*i/180;
+			x.style.top = 300+radius*Math.sin(angle);
+			x.style.left = 600+radius*Math.cos(angle);
+			i++;
+			if(i==360)
+			i=0;
+			m=setTimeout(move_circle,timeout);
+
+}
+function increase_speed()
+	{
+		timeout-=2;
+	}
+
+	function decrease_speed()
+	{
+		timeout+=2;
+	}
+</script>
+<style>
+
+#mycircle  {
+ position : relative;
+	width : 20px;
+	height : 20px;
+	top: 50%;
+	left: 45%;
+	border-radius : 50px;
+	background:black;
+	-moz-border-radius : 50px;
+
+}
+#position{
+height :20px;
+width:1200px;
+text-align:center;
+}
+</style>
+
+</head>
+<body  >
+<div id="position">
+<h2><p >Circle moving in a circular path <br>click on the circle :)</p></h2><hr>
+		<button  onclick="increase_speed()">Increase speed</button>
+		<button onclick="decrease_speed()">Decrease speed</button><br>
+	</div>
+   <div id="mycircle" onclick="move_circle()" ></div>
+</body>
+</html>
