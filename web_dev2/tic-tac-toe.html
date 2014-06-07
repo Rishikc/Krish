@@ -1,0 +1,499 @@
+<html>
+<head>
+<title>TIC-TAC-TOE GAME</title>
+<style>
+.d
+{float:left
+}
+</style>
+</head>
+<body onload="alert1()";>
+<script type="text/javascript">
+function alert1(){
+confirm("Please choose one of the following-either player vs player or player vs computer :)");                 
+}
+function current_details(Player1_Username,Player2_Username) { 
+document.getElementById("h").innerHTML=""+Player1_Username+" vs "+Player2_Username+"<br>"
+} 
+function result1(name,player){
+document.getElementById("t").innerHTML="<br>Winner:"+name+"<br>Score"+player+""
+}
+function randomput(){temp="";
+ok = 0;
+if(ch==1){
+cf=0;}
+else if(ch==2){
+cf=1;
+}
+probability1();
+probability2();
+checkSpace();
+while(ok==0) {
+aRandomNumber=Math.random()
+comp=Math.round((choice-1)*aRandomNumber)+1;//DINT UNDERSTAND
+if (comp==1) temp="A";
+if (comp==2) temp="B";
+if (comp==3) temp="C";
+if (comp==4) temp="D";
+if (comp==5) temp="E";
+if (comp==6) temp="F";
+if (comp==7) temp="G";
+if (comp==8) temp="H";
+if (comp==9) temp="I";
+checkSpace();
+}
+if(cf==0)
+{
+document.images[temp].src= x;
+ch=2;
+}
+else
+{
+document.images[temp].src= o;
+ch=1;
+}
+process();
+}
+</script>
+<div id="m" class="d">
+<br><table bgcolor="cyan" class="d"  cellpadding="40" cellspacing="10" border="0"height="250" width="350">
+<td valign="top" align="center" style="padding-top:30px;padding-bottom:30px">
+<b>Current Game And Result</b>
+		<br /><br />
+<div id="h"></div>		
+<div id="t"><div>		
+<br>
+<br>
+ 
+</div>
+</div>
+</table>
+
+
+<table class="d" bgcolor="#a9db7a"  cellpadding="40" cellspacing="10" border="20" width="600">
+	<tr>
+		<td valign="top" align="center" style="padding-top:30px;padding-bottom:30px">
+
+				<b>Tic-Tac-Toe</b>
+		<br /><br />
+						<div align="left">This is an interactive game of good old fashioned tic-tac-toe!. Enjoy :)</div>
+		<br /><br />
+<SCRIPT LANGUAGE="JavaScript">
+var x = "x.jpg";
+var o = "o.jpg";
+var blank = "blank.jpg";
+var pause = 0;
+var all = 0;
+var a = 0;
+var b = 0;
+var c = 0;
+var d = 0;
+var e = 0;
+var f = 0;
+var g = 0;
+var h = 0;
+var i = 0;
+var k=10;
+var l=10;
+var temp="";
+var ok = 0;
+var cf = 0;
+var t = 0;
+var choice=9;
+var player_one = 0;
+var player_two = 0;
+var draw = 0;
+var z=0;
+var Player1_Username;
+var Player2_Username;
+function help() {
+alert("Welcome to Tic-Tac-Toe! In Player vs Computer: You play as the X's and the computer is the O's. In Player1 vs Player2: player1 plays as the X's and the player2 is the O's. Select the square you want to put your X or O into by clicking them.  You cannot occupy a square that is already occupied. The first player to get three squares in a row wins.  Good Luck!!")
+}
+function logic() {
+if ((a==1)&&(b==1)&&(c==1)) all=1;
+if ((a==1)&&(d==1)&&(g==1)) all=1;
+if ((a==1)&&(e==1)&&(i==1)) all=1;
+if ((b==1)&&(e==1)&&(h==1)) all=1;
+if ((d==1)&&(e==1)&&(f==1)) all=1;
+if ((g==1)&&(h==1)&&(i==1)) all=1;
+if ((c==1)&&(f==1)&&(i==1)) all=1;
+if ((g==1)&&(e==1)&&(c==1)) all=1;
+if ((a==2)&&(b==2)&&(c==2)) all=2;
+if ((a==2)&&(d==2)&&(g==2)) all=2;
+if ((a==2)&&(e==2)&&(i==2)) all=2;
+if ((b==2)&&(e==2)&&(h==2)) all=2;
+if ((d==2)&&(e==2)&&(f==2)) all=2;
+if ((g==2)&&(h==2)&&(i==2)) all=2;
+if ((c==2)&&(f==2)&&(i==2)) all=2;
+if ((g==2)&&(e==2)&&(c==2)) all=2;
+if ((a != 0)&&(b != 0)&&(c != 0)&&(d != 0)&&(e != 0)&&(f != 0)&&(g != 0)&&(h != 0)&&(i != 0)&&(all == 0)) all = 3;
+}
+//////////////////////////////////////////////////////////////////////////
+function probability1() {
+if ((a==2)&&(b==2)&&(c== 0)&&(temp=="")) temp="C";
+if ((a==2)&&(b== 0)&&(c==2)&&(temp=="")) temp="B";
+if ((a== 0)&&(b==2)&&(c==2)&&(temp=="")) temp="A";
+if ((a==2)&&(d==2)&&(g== 0)&&(temp=="")) temp="G";
+if ((a==2)&&(d== 0)&&(g==2)&&(temp=="")) temp="D";
+if ((a== 0)&&(d==2)&&(g==2)&&(temp=="")) temp="A";
+if ((a==2)&&(e==2)&&(i== 0)&&(temp=="")) temp="I";
+if ((a==2)&&(e== 0)&&(i==2)&&(temp=="")) temp="E";
+if ((a== 0)&&(e==2)&&(i==2)&&(temp=="")) temp="A";
+if ((b==2)&&(e==2)&&(h== 0)&&(temp=="")) temp="H";
+if ((b==2)&&(e== 0)&&(h==2)&&(temp=="")) temp="E";
+if ((b== 0)&&(e==2)&&(h==2)&&(temp=="")) temp="B";
+if ((d==2)&&(e==2)&&(f== 0)&&(temp=="")) temp="F";
+if ((d==2)&&(e== 0)&&(f==2)&&(temp=="")) temp="E";
+if ((d== 0)&&(e==2)&&(f==2)&&(temp=="")) temp="D";
+if ((g==2)&&(h==2)&&(i== 0)&&(temp=="")) temp="I";
+if ((g==2)&&(h== 0)&&(i==2)&&(temp=="")) temp="H";
+if ((g== 0)&&(h==2)&&(i==2)&&(temp=="")) temp="G";
+if ((c==2)&&(f==2)&&(i== 0)&&(temp=="")) temp="I";
+if ((c==2)&&(f== 0)&&(i==2)&&(temp=="")) temp="F";
+if ((c== 0)&&(f==2)&&(i==2)&&(temp=="")) temp="C";
+if ((g==2)&&(e==2)&&(c== 0)&&(temp=="")) temp="C";
+if ((g==2)&&(e== 0)&&(c==2)&&(temp=="")) temp="E";
+if ((g== 0)&&(e==2)&&(c==2)&&(temp=="")) temp="G";
+}
+//////////////////////////////////////////////////////////////////////
+function probability2() {
+if ((a==1)&&(b==1)&&(c==0)&&(temp=="")) temp="C";
+if ((a==1)&&(b==0)&&(c==1)&&(temp=="")) temp="B";
+if ((a==0)&&(b==1)&&(c==1)&&(temp=="")) temp="A";
+if ((a==1)&&(d==1)&&(g==0)&&(temp=="")) temp="G";
+if ((a==1)&&(d==0)&&(g==1)&&(temp=="")) temp="D";
+if ((a==0)&&(d==1)&&(g==1)&&(temp=="")) temp="A";
+if ((a==1)&&(e==1)&&(i==0)&&(temp=="")) temp="I";
+if ((a==1)&&(e==0)&&(i==1)&&(temp=="")) temp="E";
+if ((a==0)&&(e==1)&&(i==1)&&(temp=="")) temp="A";
+if ((b==1)&&(e==1)&&(h==0)&&(temp=="")) temp="H";
+if ((b==1)&&(e==0)&&(h==1)&&(temp=="")) temp="E";
+if ((b==0)&&(e==1)&&(h==1)&&(temp=="")) temp="B";
+if ((d==1)&&(e==1)&&(f==0)&&(temp=="")) temp="F";
+if ((d==1)&&(e==0)&&(f==1)&&(temp=="")) temp="E";
+if ((d==0)&&(e==1)&&(f==1)&&(temp=="")) temp="D";
+if ((g==1)&&(h==1)&&(i==0)&&(temp=="")) temp="I";
+if ((g==1)&&(h==0)&&(i==1)&&(temp=="")) temp="H";
+if ((g==0)&&(h==1)&&(i==1)&&(temp=="")) temp="G";
+if ((c==1)&&(f==1)&&(i==0)&&(temp=="")) temp="I";
+if ((c==1)&&(f==0)&&(i==1)&&(temp=="")) temp="F";
+if ((c==0)&&(f==1)&&(i==1)&&(temp=="")) temp="C";
+if ((g==1)&&(e==1)&&(c==0)&&(temp=="")) temp="C";
+if ((g==1)&&(e==0)&&(c==1)&&(temp=="")) temp="E";
+if ((g==0)&&(e==1)&&(c==1)&&(temp=="")) temp="G";
+}
+
+function clearOut() {
+document.game.player1.value="0";
+document.game.player2.value="0";
+document.game.ties.value="0";
+}
+function checkSpace() {
+if ((temp=="A")&&(a==0)) {
+ok=1;
+if (cf==0) a=1;
+if (cf==1) a=2;
+}
+if ((temp=="B")&&(b==0)) {
+ok=1;
+if (cf==0) b=1;
+if (cf==1) b=2;
+}
+if ((temp=="C")&&(c==0)) {
+ok=1;
+if (cf==0) c=1;
+if (cf==1) c=2;
+}
+if ((temp=="D")&&(d==0)) {
+ok=1;
+if (cf==0) d=1;
+if (cf==1) d=2;
+}
+if ((temp=="E")&&(e==0)) {
+ok=1;
+if (cf==0) e=1;
+if (cf==1) e=2;
+}
+if ((temp=="F")&&(f==0)) {
+ok=1
+if (cf==0) f=1;
+if (cf==1) f=2;
+}
+if ((temp=="G")&&(g==0)) {
+ok=1
+if (cf==0) g=1;
+if (cf==1) g=2;
+}
+if ((temp=="H")&&(h==0)) {
+ok=1;
+if (cf==0) h=1;
+if (cf==1) h=2;
+}
+if ((temp=="I")&&(i==0)) {
+ok=1;
+if (cf==0) i=1;
+if (cf==1) i=2;
+}
+
+}
+function player1(chName) {
+pause = 0;
+if (all!=0) ended();
+if (all==0) {
+cf = 0;
+ok=0;
+temp=chName;
+checkSpace();
+if (ok==1) {
+document.images[chName].src = x;
+}
+if (ok==0)taken();
+process();
+}
+}
+function taken() {
+alert("That square is already occupied.  Please select another square.")
+pause=1;
+if(ch==1)ch=2;
+ else ch=1;
+}
+function player2(chName) {
+temp="";
+if (all!=0) ended();
+if (all==0) {
+cf = 1;
+ok = 0;
+temp=chName;
+checkSpace();
+if (ok==1) {
+document.images[chName].src = o;
+}
+if (ok==0)taken();
+process();
+   }
+}
+
+function one_player(chName) {
+pause = 0;
+if (all!=0) ended();
+if (all==0) {
+cf = 0;
+ok = 0;
+temp=chName;
+checkSpace();
+if (ok==1) {
+document.images[chName].src = x;
+}
+if (ok==0)taken();
+process();
+if ((all==0)&&(pause==0)) computer();
+   }
+}
+
+function computer() {
+temp="";
+ok = 0;
+cf=1;
+probability1();
+probability2();
+checkSpace();
+while(ok==0) {
+aRandomNumber=Math.random()
+comp=Math.round((choice-1)*aRandomNumber)+1;//DINT UNDERSTAND
+if (comp==1) temp="A";
+if (comp==2) temp="B";
+if (comp==3) temp="C";
+if (comp==4) temp="D";
+if (comp==5) temp="E";
+if (comp==6) temp="F";
+if (comp==7) temp="G";
+if (comp==8) temp="H";
+if (comp==9) temp="I";
+checkSpace();
+}
+document.images[temp].src= o;
+process();
+}
+function ended() {
+alert("The game has already ended. To play a new game click the Play Again button.")
+}
+function process() {
+logic();
+if (all==1){ alert(" "+Player1_Username+ "  won, congratulations!"); player_one++;clearTimeout(q); }
+if (all==2){ alert(" "+Player2_Username+ "  won, congratulations!"); player_two++;clearTimeout(q); }
+if (all==3){ alert("tied."); draw++;clearTimeout(q); }
+if (all!=0) {
+document.game.player1.value = player_one;
+document.game.player2.value = player_two;
+document.game.ties.value = draw;
+   }
+}
+function playAgain() {
+if (all==0) {
+if(confirm("This will restart the game and clear all the current scores. Click end game to display the winner")) reset();
+
+}
+if (all>0) reset();
+}
+function reset() {
+all = 0;
+a = 0;
+b = 0;
+c = 0;
+d = 0;
+e = 0;
+f = 0;
+g = 0;
+h = 0;
+i = 0;
+temp="";
+ok = 0;
+cf = 0;
+
+choice=9;
+document.images.A.src= blank;
+document.images.B.src= blank;
+document.images.C.src= blank;
+document.images.D.src= blank;
+document.images.E.src= blank;
+document.images.F.src= blank;
+document.images.G.src= blank;
+document.images.H.src= blank;
+document.images.I.src= blank;
+if(ch==2)ch=2;
+ else ch=1;
+ }
+ function reset2(){
+ document.game.player1.value = 0;
+document.game.player2.value = 0;
+document.game.ties.value = 0;
+ }
+var ch=1;
+time=5;
+function timer()
+{
+var delay=1000;
+document.getElementById("t").innerHTML = "<br>"+time+"";
+time--; 
+if(time!=-1)
+q=setTimeout(timer,delay);
+else
+{
+randomput();
+time = 5;
+timer();
+}
+}function player(option){
+
+if(z==1){
+if(ch==1){
+var k=5;
+ch=2;
+
+player1(option);
+}
+else{
+
+r=5;
+ch=1;
+
+player2(option);
+}
+}
+else{
+one_player(option);
+}
+}
+function confirm1(){
+var k=10;
+playAgain();
+
+Player1_Username=prompt("PLAYER 1 : what is your name?","enter here.");
+Player2_Username=prompt("PLAYER 2 : what is your name?","enter here.");
+if(Player1_Username){
+if(Player2_Username){
+alert(" "+ Player1_Username + "  vs  " +Player2_Username+ ".   Let the Game begin. Have fun guys :) ");
+current_details(Player1_Username,Player2_Username);
+}
+}
+z=1;
+}
+function confirm2(){
+playAgain();
+Player1_Username=prompt("PLAYER : what is your name?","enter here.");
+Player2_Username="computer";
+if(Player1_Username){
+alert(" "+ Player1_Username + "  vs  " +Player2_Username+ ".   Let the Game begin. Have fun :) ");
+current_details(Player1_Username,Player2_Username);
+}
+z=2;
+}
+function endgame(){
+if(confirm("Are you sure u want to end the game?")){
+if(z==1){
+if(player_one>player_two)
+result1(Player1_Username,player_one);
+else
+result1(Player2_Username,player_two);
+reset2();
+}
+else{
+if(player_one>player_two)
+result1(Player1_Username,player_one);
+else
+alert("computer Wins");
+reset2();
+}
+}
+}
+function reset3(){
+clearTimeout(q);
+time=5;
+}
+</script>
+
+
+<center>
+<form name=game>
+<table  border=0>
+<td>
+<table onclick="reset3();" border=1>
+<tr >
+<td><a href="javascript:player('A')"><img src="blank.jpg" border=0 height=100 width=100 name=A alt="Top-Left"></a></td>
+<td><a href="javascript:player('B')"><img src="blank.jpg" border=0 height=100 width=100 name=B alt="Top-Center"></a></td>
+<td><a href="javascript:player('C')"><img src="blank.jpg" border=0 height=100 width=100 name=C alt="Top-Right"></a></td>
+</tr>
+<tr>
+<td><a href="javascript:player('D')"><img src="blank.jpg" border=0 height=100 width=100 name=D alt="Middle-Left"></a></td>
+<td><a href="javascript:player('E')"><img src="blank.jpg" border=0 height=100 width=100 name=E alt="Middle-Center"></a></td>
+<td><a href="javascript:player('F')"><img src="blank.jpg" border=0 height=100 width=100 name=F alt="Middle-Right"></a></td>
+</tr>
+<tr>
+<td><a href="javascript:player('G')"><img src="blank.jpg" border=0 height=100 width=100 name=G alt="Bottom-Left"></a></td>
+<td><a href="javascript:player('H')"><img src="blank.jpg" border=0 height=100 width=100 name=H alt="Bottom-Center"></a></td>
+<td><a href="javascript:player('I')"><img src="blank.jpg" border=0 height=100 width=100  name=I alt="Bottom-Right"></a></td>
+</tr>
+</table>
+</td>
+</table>
+<input name="player" type=radio value="Player1 vs Player2" onClick="confirm1();reset();timer();">Player 1 vs Player 2
+<input type=button value="Play Again"  onClick="playAgain();reset();timer();">
+<input name="player" type=radio value="player vs computer" onclick="confirm2();reset();timer();">Player vs Computer
+<input type=button value="Game Help" onClick="help();">
+<input type=button value="End Game" onClick="endgame();">
+<div align="center">
+<table>
+<tr><td><input type=text size=5 name=player1></td><td><input type=text size=5 name=player2></td>
+<td><input type=text size=5 name=ties></td></tr>
+<tr><td align="center">Player1</td><td align="center">Player2</td><td align="center">Draw</td></tr>
+</table>
+</div>
+</form>
+</center>
+		</td>
+	</tr>
+</table>
+</div>
+
+</body>
+</html>
