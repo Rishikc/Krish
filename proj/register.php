@@ -1,14 +1,17 @@
 <?php 
+error_reporting(~E_WARNING);
 include_once $_SERVER['DOCUMENT_ROOT'] . '/securimage/securimage.php';
 include "database.php";
+require 'class.phpmailer.php';
 ?>
 
 <!DOCTYPE HTML>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-
-  <title>sign up</title>
+<link href="register.css" rel="stylesheet" />
+  <title>sign up</title> 
+  
   
   <link id="data-uikit-theme" rel="stylesheet" href="css/uikit.docs.min.css">
         <link rel="stylesheet" href="css/docs.css">
@@ -77,7 +80,7 @@ y.value=x;
 function emailval(x,y){
 var at=x.indexOf("@");
 var dot=x.indexOf(".");
-if(at<1||dot<at+2||dot+2>=x.length){
+if(at<1||dot<at+2||(dot+2>=x.length&&dot>at) ){
 y.innerHTML="invalid email format-enter as text@server.com/org etc";
 }
 else y.innerHTML="";
@@ -102,7 +105,7 @@ retypepassword1.innerHTML="";
 }
 function mobilenumber()
 {
-if(number.value.length<10)
+if(number.value.length!=10)
 mob.innerHTML="enter a valid mobile number";
 else
 mob.innerHTML="";
@@ -110,7 +113,9 @@ mob.innerHTML="";
 </script>
 </head>
 <body class="tm-navbar uk-navbar uk-navbar-attached">
-<p><span style="color:white">fill the form to sign up</p>
+<!--<p><span style="color:white">fill the form to sign up</p>-->
+<div id="main">
+
 <form method="post" enctype="multipart/form-data" action="<?php echo $_SERVER['PHP_SELF']; ?>">
   <table>
   <tr>
@@ -119,8 +124,12 @@ mob.innerHTML="";
   </tr>
   <tr><td></td><td id="first" style="color:red" ></td></tr>
   <tr>
+  <td><label for="username"><span style="color:red">*</span><span style="color:white">username:</label></td>
+  <td><input type="text" id="username" name="username" onfocus="req(firstname,first,'firstname')"/></td>
+  </tr><tr><td></td><td id="user" style="color:red" ></td></tr>
+  <tr>
   <td><label for="rollnumber"><span style="color:red">*</span><span style="color:white">rollnumber:</label></td>
-  <td><input type="text" id="rollnumber" name="rollnumber" onfocus="req(firstname,first,'firstname')"/></td>
+  <td><input type="text" id="rollnumber" name="rollnumber" onfocus="req(username,user,'username')"/></td>
   </tr><tr><td></td><td id="roll" style="color:red" ></td></tr><tr>
   <td><label for="email"><span style="color:red">*</span><span style="color:white">email address:</label></td>
   <td><input type="text" onblur="emailval(this.value,email_id)" onfocus="req(rollnumber,roll,'rollnumber')" id="email" name="email" /></td>
@@ -152,8 +161,12 @@ mob.innerHTML="";
   <option >Architecture</option>
   </select></td>
   </tr><tr><td></td><td id="depa" style="color:red" ></td></tr>
+  <tr><td><label for="address"><span style="color:red">*</span><span style="color:white">Address:</label></td>
+  <td><input type="text" id="address" name="address" onfocus="req(department,depa,'department')"  /></td>
+  </tr>
+  <tr><td></td><td id="add" style="color:red" ></td></tr>
   <tr><td><label for="number"><span style="color:white">Mobile Number:</label></td>
-  <td><input type="number" id="number" name="number" onfocus="req(department,depa,'department')" onblur="mobilenumber()"; /></td>
+  <td><input type="number" id="number" name="number" onfocus="req(address,add,'Address')" onblur="mobilenumber()"; /></td>
   </tr>
   <tr><td></td><td id="mob" style="color:red" ></td></tr>
   <tr><td>
@@ -172,9 +185,13 @@ mob.innerHTML="";
   </table>
   <span style="color:black"><input type="submit" value="submit" name="submit" /> 
   
+  </form>
+
+</div>
   <?php  
  
   @$firstname = $_POST['firstname'];
+  @$username = $_POST['username'];
   @$rollnumber=$_POST['rollnumber'];
   @$email = $_POST['email'];
   @$gender = $_POST['gender'];
@@ -182,11 +199,12 @@ mob.innerHTML="";
   @$password2 = $_POST['retypepassword'];
   @$number=$_POST['number'];
   @$department = $_POST['department'];
-
+  @$address=$_POST['address'];
+  
   $evaluator=0;
   $at=0;
   $dot=0;
-  
+ 
 if(isset($_POST['submit'])){
 
 
@@ -195,6 +213,25 @@ echo "<br><span style='color:red'>*firstname required</span>";
 $evaluator++;
 }
  
+ if(!$username){
+echo "<br><span style='color:red'>*username required";
+$evaluator++;
+}
+else{
+$dbc = mysqli_connect($host,$user,$pass,$db)
+or die('error connecting to mysql server');
+$query4="SELECT*FROM signup";
+$result4=mysqli_query($dbc,$query4)
+or die('error querying 4');
+while($row=mysqli_fetch_array($result4)){
+if($username==$row['username']){
+echo 'username already exists. please choose another username '.'<br/>';
+$evaluator++;
+}
+}
+mysqli_close($dbc);
+}
+
 if(!$rollnumber){
 echo "<br><span style='color:red'>*rollnumber required";
 $evaluator++;
@@ -243,7 +280,7 @@ else {echo"<br><span style='color:red'>*re-enter password required";$evaluator++
 }
 else {echo"<br><span style='color:red'>*password required";$evaluator++;}
 
-if(strlen($email)!=0)
+if(strlen($email)!=0)																						//this part check dis......:(
 {
 $dbc = mysqli_connect($host,$user,$pass,$db)
 or die('error connecting to mysql server');
@@ -252,7 +289,7 @@ $result3=mysqli_query($dbc,$query3)
 or die('error querying 3');
 while($row=mysqli_fetch_array($result3)){
 if($email==$row['email']){
-echo 'email id exists. please choose another email';
+echo '<span email id exists. please choose another email</span>';
 $evaluator++;
 }
 else{
@@ -271,11 +308,22 @@ else
 $evaluator++;
 }
 if(isset($number))
-if(strlen($number)<10)
+if(strlen($number)!=10)
 {
 echo "<br><span style='color:red'>invalid mobile number";
 $evaluator++;
 }
+
+
+function generateRandomString($length = 40) {
+    $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    $randomString = '';
+    for ($i = 0; $i < $length; $i++) {
+        $randomString .= $characters[rand(0, strlen($characters) - 1)];
+    }
+    return $randomString;
+}
+
 
 $securimage = new Securimage();
 if ($securimage->check(@$_POST['captcha_code']) == false) {
@@ -292,13 +340,52 @@ else
 //aftr all validation
 if($evaluator==0)
 {
+$mail = new PHPMailer();
+$mail->IsSMTP();
+$mail->Mailer = 'smtp';
+$mail->SMTPAuth = true;
+$mail->Host = 'smtp.gmail.com'; // "ssl://smtp.gmail.com" didn't worked
+$mail->Port = 587;
+$mail->SMTPSecure = 'tls';
+// or try these settings (worked on XAMPP and WAMP):
+// $mail->Port = 587;
+// $mail->SMTPSecure = 'tls';
+$cc=generateRandomString();
+$mail->Username = "book.kart123@gmail.com";
+$mail->Password = "Bookkart123";
+
+$mail->IsHTML(true); // if you are going to send HTML formatted emails
+$mail->SingleTo = true; // if you want to send a same email to multiple users. multiple emails will be sent one-by-one.
+
+$mail->From = "Book.kart123@gmail.com";
+$mail->FromName = "Book-kart";
+
+$mail->addAddress("$email","User 1");
+
+
+$mail->Subject = "Book-kart verification link";
+$link="localhost/verify.php?r=".$username."&cc=".$cc."";
+$mail->Body = "Hi,<br /><br />This is from Book-kart.Thank you for registering .To verify your account please <a href=".$link.">Click here to verify your account </a>";
+
+if(!$mail->Send())
+    echo "Message was not sent <br />PHPMailer Error: " . $mail->ErrorInfo;
+else
+    echo "Message has been sent";
+	}
+
 $dbc = mysqli_connect($host,$user,$pass,$db)
 or die('error connecting to mysql server');
-$query1="INSERT INTO signup(name,rollnumber,email,gender,password,department,mobilenumber) values('$firstname','$rollnumber','$email','$gender',SHA('$password'),'$department','$number')";
+$query1="INSERT INTO signup(username,name,rollnumber,email,gender,department,mobilenumber,address) values('$username','$firstname','$rollnumber','$email','$gender','$department','$number','$address')";
 $result=mysqli_query($dbc,$query1)
 or die('error querying 2');
+$query2="INSERT INTO login(username,password,verified) values('$username',SHA('$password'),'$cc')";
+$result2=mysqli_query($dbc,$query2);
 mysqli_close($dbc);
-$msg="u have successfully signed up :)";
+
+$host=$_SERVER["HTTP_HOST"];
+  $path=rtrim(dirname($_SERVER["PHP_SELF"]),"/\\");
+  //header("Location: http://$host$path/successSignUp.php");
+
     }
 	
 	echo "<br /><a href='delta.php'>Back to Home page</a>";
@@ -308,7 +395,7 @@ $msg="u have successfully signed up :)";
 
 // the upload function
 
-}
+
 ?>  
 </body>
 </html>  
