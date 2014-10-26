@@ -22,6 +22,7 @@ var m,n;
 
 <?php
 // define variables and set to empty values
+$dbpass = $pass;
 $nameErr = $rollErr = $genderErr = $capt=$captErr=$mob=$mobErr=$maile=$mailErr=$addr=$addrErr=$uname=$unameErr=$passErr = $cpassErr = "";
 $name = $roll = $gender = $pass = $cpass = $dept= $checkroll = "";
 $err=0;
@@ -66,7 +67,7 @@ $rollErr="Enter Valid RollNo.";
 $err=1;
 $roll="";
 }
-$con=mysqli_connect($host,$user,$pass,$db);
+$con=mysqli_connect($host,$user,$dbpass,$db);
 $res=mysqli_query($con,"select * from signup ");
 while($row=mysqli_fetch_array($res))
 {
@@ -125,7 +126,7 @@ $err=1;
 $uname = test_input($_POST["uname"]);
 if($err!=1)
 $err=0;
-$con=mysqli_connect($host,$user,$pass,$db);
+$con=mysqli_connect($host,$user,$dbpass,$db);
 $res=mysqli_query($con,"select * from signup ");
 while($row=mysqli_fetch_array($res))
 {
@@ -258,7 +259,7 @@ $mail->addAddress("$maile","User 1");
 
 $mail->Subject = "Book-kart verification link";
 $link="localhost/securimage/verify.php?r=".$uname."&cc=".$cc."";
-$mail->Body = "Hi".$name.",<br /><br />This is from Book-kart.Thank you for registering .To verify your account please <a href=".$link.">Click here to verify your account </a>";
+$mail->Body = "Hi ".$name.",<br /><br />This is from Book-kart.Thank you for registering .To verify your account please <a href=".$link.">Click here to verify your account </a>";
 
 if(!$mail->Send())
     echo "Message was not sent <br />PHPMailer Error: " . $mail->ErrorInfo;
