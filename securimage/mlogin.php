@@ -4,6 +4,7 @@
 
 <?php
 include "database.php";
+$dbpass=$pass;
 $roll=$pass=$rolle=$passe="";
 session_start();
 $name="";
@@ -11,10 +12,9 @@ $ip=$_SERVER['REMOTE_ADDR'];
 $usra=$_SERVER['HTTP_USER_AGENT'];
 $dmn=$_SERVER['HTTP_HOST'];
 $click=0;
-
 	
-	$con=mysqli_connect($host,$user,$pass,$db)
-or die('error connecting to mysql server');
+	$con=mysqli_connect($host,$user,$dbpass,$db)
+or die($user + " " +$pass);
 	$checkip = mysqli_query($con,"SELECT * from login WHERE ip = '".$ip."'");
 
 		

@@ -166,6 +166,14 @@ document.getElementById('cclass').style.display='block';
 
 <div id="show" style="background:#cccccc;position:absolute;width:70%;height:80%;overflow:scroll;border:1px solid #000000;top:20%;left:20%;" ></div>
 
+<div class="abook" id="dping" style="top:30%;height:40%;color:#fff;border:2px solid #fff">
+
+<br>
+        <center><textarea style="resize: none;" name="message"  id="message" rows="10" cols="60" placeholder="Your Message">Hi There! I am interested in your book</textarea>
+        <br><br><input type="button" value='Ping!' name="ping" id="ping" onclick="sendmsg();">
+        <input type="hidden" name="receiver" id="receiver" >
+</div>
+
 </div>
 <script>
 addmsg();
