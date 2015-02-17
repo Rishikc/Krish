@@ -1,0 +1,5 @@
+1)count down new game;          			-done
+2)count error                   			-done
+3)Another question array if solved?
+4)leaderboard
+
