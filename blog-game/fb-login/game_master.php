@@ -109,11 +109,12 @@ if( strpos($html, $data ) !== false)
 
 	$sql2 = "SELECT * FROM users WHERE fid='".$_SESSION['FBID']."'";
 $result2 =mysqli_query($conn, $sql2);
-
+$points;
         while($row = mysqli_fetch_assoc($result2)) {
                 $solvedtable = $row['curr_sol'];
 				$solvedcount=$row['solved'];
-            }
+				$points=$row['points'];
+		}
 			$solvedcount++;
 			
 		$solvedtable1=explode(",",$solvedtable );
@@ -130,6 +131,12 @@ $result2 =mysqli_query($conn, $sql2);
 		$sql8 = "UPDATE users SET solved = $solvedcount WHERE fid='".$_SESSION['FBID']."'";
 		mysqli_query($conn, $sql8);
 		
+		$points=$points+20;
+		
+		$sql8 = "UPDATE users SET points = $points WHERE fid='".$_SESSION['FBID']."'";
+		mysqli_query($conn, $sql8);
+		
+		
 		$solvedtable=implode(",",$solvedtable1);
 		$sql3 = "UPDATE users SET curr_sol = '$solvedtable' WHERE fid='".$_SESSION['FBID']."'";
         
@@ -137,7 +144,7 @@ $result2 =mysqli_query($conn, $sql2);
 		mysqli_query($conn, $sql3);
 		
 		echo "<br><br><br><h1 color='red'><center>Congos!!</center></h1><br><center><h1>you have completed this level</h1><br>";
-		echo "<h2>CLICKS:".$_SESSION['count']."         TIME:".$time;
+		echo "<center><h2>CLICKS:".$_SESSION['count']."</center>";
 		
 		$table[$index]['qn_no']=0;
 		$_SESSION['tt']=$table;

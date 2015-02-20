@@ -67,13 +67,12 @@ var count =-1;
             <th>Name</th>  
             <th>Solved</th>  
             <th>Clicks</th>
-			<th>Time taken</th>  
-            <th>Toal Score</th>
+			<th>Toal Score</th>
           </tr>  
         </thead>  
         <tbody>  
           <?php
-				    $sql = "SELECT * FROM users order by solved desc,clicks desc,time desc";
+				    $sql = "SELECT * FROM users order by points desc,solved desc,clicks desc,time desc";
     $result = mysqli_query($conn, $sql);
     if (mysqli_num_rows($result) > 0) {
             while($row = mysqli_fetch_assoc($result)) {
@@ -81,7 +80,6 @@ var count =-1;
 				echo '<td>'.$row['name'].'</td>';
 				echo '<td>'.$row['solved'].'</td>';
 				echo '<td>'.$row['clicks'].'</td>';
-				echo '<td>'.$row['time'].'</td>';
 				echo '<td>'.$row['points'].'</td>';
 				echo '</tr>';
             } 

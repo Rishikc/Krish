@@ -8,7 +8,7 @@ $sql = "UPDATE users SET curr_sol = NULL WHERE name='Rishi Kc'";
 $result2 = mysqli_query($conn, $sql);
 $sql = "UPDATE users SET time = 0 WHERE name='Rishi Kc'";
 $result2 = mysqli_query($conn, $sql);
- $sql = "UPDATE users SET clicks = 0 WHERE name='Rishi Kc'";
+ $sql = "UPDATE users SET points = 0 WHERE name='Rishi Kc'";
 $result2 = mysqli_query($conn, $sql);
  
 /*$sql2 = "SELECT * FROM users WHERE fid='Rishi Kc'";
